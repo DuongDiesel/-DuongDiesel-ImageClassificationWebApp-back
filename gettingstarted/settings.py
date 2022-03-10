@@ -129,7 +129,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = "/static/"
 
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_root")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media_root")
 MEDIA_URL = "/media/"
 
 django_heroku.settings(locals())
