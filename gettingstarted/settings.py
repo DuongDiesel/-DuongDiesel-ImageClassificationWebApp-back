@@ -22,12 +22,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "CHANGE_ME!!!! (P.S. the SECRET_KEY environment variable will be used, if set, instead)."
+SECRET_KEY = os.environ.get("SECRET_KEY", 'abce')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["whatimage-django-back.herokuapp.com"]
 
 
 # Application definition
@@ -82,9 +82,17 @@ WSGI_APPLICATION = "gettingstarted.wsgi.application"
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
+    #"default": {
+    #    "ENGINE" : "django.db.backends.sqlite3",
+    #    "NAME": os.path.join(BASE_DIR, "db.sqlite3")
+    #}
     "default": {
-        "ENGINE" : "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3")
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get("NAME", 'dev default value'),
+        'USER': os.environ.get("USER", 'dev default value'),
+        'PASSWORD': os.environ.get("PASSWORD", 'dev default value'),
+        'HOST': os.environ.get("HOST", 'dev default value'),
+        'PORT':  os.environ.get("PORT", 'dev default value')
     }
 }
 
