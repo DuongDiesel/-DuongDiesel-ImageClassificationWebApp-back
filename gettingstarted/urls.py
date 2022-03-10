@@ -6,6 +6,9 @@ admin.autodiscover()
 
 import hello.views
 
+from django.conf.urls.static import static
+from django.conf import settings
+
 # To add a new path, first import the app:
 # import blog
 #
@@ -19,3 +22,6 @@ urlpatterns = [
     path("db/", hello.views.db, name="db"),
     path("admin/", admin.site.urls),
 ]
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
