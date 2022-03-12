@@ -59,7 +59,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://serene-dusk-18231.herokuapp.com/"
+    "https://serene-dusk-18231.herokuapp.com"
 ]
 
 ROOT_URLCONF = "gettingstarted.urls"
