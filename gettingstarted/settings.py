@@ -150,7 +150,7 @@ django_heroku.settings(locals())
 # Download Model
 import urllib.request
 # Define the remote file to retrieve
-remote_url = 'https://github.com/DuongDiesel/-DuongDiesel-ImageClassificationWebApp-back/raw/main/gettingstarted/malaria_augmented_model.h5'
+remote_url = 'https://github.com/DuongDiesel/DuongDiesel_Store_models/raw/main/malaria_augmented_model.h5'
 # Define the local filename to save data
 local_file = 'malaria_augmented_model.h5'
 # Download remote and save locally
