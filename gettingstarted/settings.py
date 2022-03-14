@@ -147,6 +147,7 @@ MEDIA_URL = "/media/"
 django_heroku.settings(locals())
 
 
+# Download Model
 import urllib.request
 # Define the remote file to retrieve
 remote_url = 'https://github.com/DuongDiesel/-DuongDiesel-ImageClassificationWebApp-back/raw/main/gettingstarted/malaria_augmented_model.h5'

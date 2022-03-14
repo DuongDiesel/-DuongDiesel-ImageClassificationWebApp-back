@@ -73,7 +73,7 @@ class Image(models.Model):
             print(f'file_model as {file_model}')
             graph = ops.get_default_graph()
             model = load_model(file_model)
-            print(f'model loaded')
+            print('model loaded')
  
             with graph.as_default():
                 #model = load_model(file_model)
