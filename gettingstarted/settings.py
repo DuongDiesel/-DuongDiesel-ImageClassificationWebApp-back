@@ -58,9 +58,13 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 CORS_ORIGIN_WHITELIST = [
     "https://serene-dusk-18231.herokuapp.com"
 ]
+
+
 
 ROOT_URLCONF = "gettingstarted.urls"
 
