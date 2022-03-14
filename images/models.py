@@ -72,9 +72,11 @@ class Image(models.Model):
             file_model = os.path.join(settings.BASE_DIR, 'malaria_augmented_model.h5')
             print(f'file_model as {file_model}')
             graph = ops.get_default_graph()
+            model = load_model(file_model)
+            print(f'model loaded')
  
             with graph.as_default():
-                model = load_model(file_model)
+                #model = load_model(file_model)
                 pred = LABELS[model.predict_classes(to_pred)[0]]
                 self.classified = str(pred)
                 print("graph loaded")
