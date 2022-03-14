@@ -34,6 +34,7 @@ class Image(models.Model):
         img = image.load_img(self.picture, target_size=(32, 32))
         img_array = image.img_to_array(img)
         to_pred = np.expand_dims(img_array, axis=0)
+        print(to_pred)
         try:
             #####################
             SIZE = 32
@@ -64,9 +65,12 @@ class Image(models.Model):
             model.compile(loss='binary_crossentropy',
                         optimizer='rmsprop',
                         metrics=['accuracy'])
+            
+            print("model compiled")
 
             ##########################
             file_model = os.path.join(settings.BASE_DIR, 'malaria_augmented_model.h5')
+            print("path loaded")
             graph = ops.get_default_graph()
  
             with graph.as_default():
