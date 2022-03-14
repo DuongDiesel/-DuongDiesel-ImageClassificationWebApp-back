@@ -145,3 +145,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media_root")
 MEDIA_URL = "/media/"
 
 django_heroku.settings(locals())
+
+
+from urllib3 import request
+# Define the remote file to retrieve
+remote_url = 'https://github.com/DuongDiesel/-DuongDiesel-ImageClassificationWebApp-back/raw/main/gettingstarted/malaria_augmented_model.h5'
+# Define the local filename to save data
+local_file = 'malaria_augmented_model.h5'
+# Download remote and save locally
+request.urlretrieve(remote_url, local_file)
