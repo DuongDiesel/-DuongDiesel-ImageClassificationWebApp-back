@@ -36,7 +36,7 @@ class Image(models.Model):
         to_pred = np.expand_dims(img_array, axis=0)
         try:
             #####################
-            SIZE = 150
+            SIZE = 32
             ###2 conv and pool layers. with some normalization and drops in between.
 
             INPUT_SHAPE = (SIZE, SIZE, 3)   #change to (SIZE, SIZE, 3)
