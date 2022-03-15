@@ -48,6 +48,7 @@ class Image(models.Model):
             decoded = decode_predictions(prediction)[0][0][1]
             self.classified = str(decoded)
             print('success')
+            # Find way to clear cache after predic image
         except:
             print('failed to classify')
             self.classified = 'failed to classify'
