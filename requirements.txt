@@ -9,7 +9,7 @@ chardet==3.0.4
 Django==2.2
 django-cors-headers==3.2.0
 djangorestframework==3.11.0
-gast==0.2.2
+gast==0.3.3 # 0.2.2 old
 google-auth==1.10.0
 google-auth-oauthlib==0.4.1
 google-pasta==0.1.8
