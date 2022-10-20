@@ -325,6 +325,12 @@ def DenseNet201(pretrained=False, progress=True, activations='relu', **kwargs):
 #model = DenseNet121(pretrained=True, last_activation=None, activations='relu', num_classes=15)
 model = DenseNet121(pretrained=True, last_activation='sigmoid', activations='relu', num_classes=15)
 model.eval()
+
+model_name_save = "/v4_v4_weighted_121_Best_model.pth"
+PATH = model_name_save
+
+state_dict_121 = torch.load(PATH)
+model.load_state_dict(state_dict_121, strict=False)
  
  
 class Image(models.Model):
