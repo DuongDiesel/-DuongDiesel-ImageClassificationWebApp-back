@@ -154,6 +154,6 @@ import urllib.request
 remote_url = 'https://github.com/DuongDiesel/DuongDiesel_Store_models/raw/main/v4_v4_weighted_121_Best_model.pth'
 # Define the local filename to save data
 #local_file = 'malaria_augmented_model.h5'
-local_file = './images/v4_v4_weighted_121_Best_model.pth'
+local_file = 'v4_v4_weighted_121_Best_model.pth'
 # Download remote and save locally
 urllib.request.urlretrieve(remote_url, local_file)
