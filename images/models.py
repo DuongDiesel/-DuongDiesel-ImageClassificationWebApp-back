@@ -21,12 +21,6 @@ except:
 from torch import Tensor
 from torch.jit.annotations import List
 
-
-
-# load as global variable here, to avoid expensive reloads with each request
-model = models.densenet121(pretrained=True)
-model.eval()
-
  
  
 class Image(models.Model):
