@@ -329,7 +329,7 @@ model.eval()
 model_name_save = "v4_v4_weighted_121_Best_model.pth"
 PATH = model_name_save
 
-state_dict_121 = torch.load(PATH)
+state_dict_121 = torch.load(PATH, map_location=torch.device('cpu'))
 model.load_state_dict(state_dict_121, strict=False, map_location=torch.device('cpu'))
  
  
