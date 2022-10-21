@@ -21,7 +21,9 @@ except:
 from torch import Tensor
 from torch.jit.annotations import List
 
+import torchvision.transforms.functional as TF
 
+from keras.preprocessing.image import load_img
 
 #---------------------------------------------------------------------------------------
 __all__ = ['DenseNet', 'densenet121', 'densenet169', 'densenet201', 'densenet161']
@@ -348,11 +350,11 @@ class Image(models.Model):
     def save(self, *args, **kwargs):
 
         try:
-            #img = load_img(self.picture, target_size=(224,224))
+            img = load_img(self.picture, target_size=(224,224), color_mode='rgb')
 
-            img = Image.open(self.picture)
-            print(img.shape)
-            img = img.convert("L").convert("RGB")
+            # img = Image.open(self.picture)
+            # print(img.shape)
+            # img = img.convert("L").convert("RGB")
             mean = [0.485, 0.456, 0.406]
             std = [0.229, 0.224, 0.225]
             transform_norm = transforms.Compose([transforms.ToTensor(), transforms.Resize((224,224)),transforms.Normalize(mean, std)])
