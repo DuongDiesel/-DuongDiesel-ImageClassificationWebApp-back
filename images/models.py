@@ -332,53 +332,51 @@ PATH = model_name_save
 state_dict_121 = torch.load(PATH, map_location=torch.device('cpu'))
 model.load_state_dict(state_dict_121, strict=False)
  
- 
+
+
+#----------------------------------------------
+
+
 class Image(models.Model):
     picture = models.ImageField()
     classified = models.CharField(max_length=10, blank=True)
     uploaded = models.DateTimeField(auto_now_add=True)
-
-    def transform_image(image_bytes):
-        """
-        Transform image into required DenseNet format: 224x224 with 3 RGB channels and normalized.
-        Return the corresponding tensor.
-        """
-        my_transforms = transforms.Compose([transforms.Resize(255),
-                                            transforms.CenterCrop(224),
-                                            transforms.ToTensor(),
-                                            transforms.Normalize(
-                                                [0.485, 0.456, 0.406],
-                                                [0.229, 0.224, 0.225])])
-        image = Image.open(io.BytesIO(image_bytes))
-        return my_transforms(image).unsqueeze(0)
-
-    def get_prediction(image_bytes):
-        tensor = transform_image(image_bytes=image_bytes)
-        outputs = model.forward(tensor)
-        _, y_hat = outputs.max(1)
-        predicted_idx = str(y_hat.item())
-        return imagenet_class_index[predicted_idx]
-
+ 
     def __str__(self):
         return f"Image classified as {self.uploaded.strftime('%Y-%m-%d %H:%M')}"
  
     def save(self, *args, **kwargs):
+
         try:
-            #transform
-            image = Image.open(io.BytesIO(image_bytes))
+            #img = load_img(self.picture, target_size=(224,224))
 
-            model = ResNet50(weights='imagenet')
-            prediction = model.predict(prep)
+            img = Image.open(self.picture)
+            img = img.convert("L").convert("RGB")
+            mean = [0.485, 0.456, 0.406] 
+            std = [0.229, 0.224, 0.225]
+            transform_norm = transforms.Compose([transforms.ToTensor(), 
+            transforms.Resize((224,224)),transforms.Normalize(mean, std)])
+            # get normalized image
+            img_normalized = transform_norm(img).float()
+            img_normalized = img_normalized.unsqueeze_(0)
 
-            decoded = decode_predictions(prediction)[0][0][1]
+            with torch.no_grad():
+                model.eval()  
+                output = model(img_normalized)
+                print(output)
+                self.classified = str(output)
 
-            self.classified = str(decoded)
-            print('success')
+
+            # img_arry = img_to_array(img)
+            # to_pred = np.expand_dims(img_arry, axis=0) #(1, 299, 299, 3)
+            # prep = preprocess_input(to_pred)
+            # model = ResNet50(weights='imagenet')
+            # prediction = model.predict(prep)
+            # decoded = decode_predictions(prediction)[0][0][1]
+            # self.classified = str(decoded)
+            # print('success')
             # Find way to clear cache after predic image
         except:
             print('failed to classify')
             self.classified = 'failed to classify'
-        
         super().save(*args, **kwargs)
-
-
