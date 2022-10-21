@@ -353,7 +353,7 @@ class Image(models.Model):
             #img = load_img(self.picture, target_size=(224,224), color_mode='rgb')
             print('check 1')
             print(self.picture)
-            img = Image.open(self.picture)
+            img = Image.open(str(self.picture))
             print('check 2')
             print(img.shape)
             img = img.convert("L").convert("RGB")
