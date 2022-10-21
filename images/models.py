@@ -382,6 +382,7 @@ class Image(models.Model):
         except:
             print('failed to classify')
             self.classified = 'failed to classify'
+            print(picture)
             img = Image.open(self.picture)
             print(img.shape)
             img = img.convert("L").convert("RGB")
