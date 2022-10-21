@@ -351,7 +351,7 @@ class Image(models.Model):
 
         try:
             #img = load_img(self.picture, target_size=(224,224), color_mode='rgb')
-
+            print('check 1')
             img = Image.open(self.picture)
             print(img.shape)
             img = img.convert("L").convert("RGB")
@@ -364,12 +364,14 @@ class Image(models.Model):
             img_normalized = img_normalized.unsqueeze_(0)
 
             #print(img_normalized.shape)
-
+            print('check 2')
             with torch.no_grad():
+                print('check 3')
                 model.eval()  
                 output = model(img_normalized)
                 print(output)
                 self.classified = str(output)
+                print('check 4')
 
 
             # img_arry = img_to_array(img)
