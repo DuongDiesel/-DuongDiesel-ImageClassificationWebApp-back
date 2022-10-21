@@ -21,9 +21,9 @@ except:
 from torch import Tensor
 from torch.jit.annotations import List
 
-import torchvision.transforms.functional as TF
+#import torchvision.transforms.functional as TF
 
-from keras.preprocessing.image import load_img
+#from keras.preprocessing.image import load_img
 
 #---------------------------------------------------------------------------------------
 __all__ = ['DenseNet', 'densenet121', 'densenet169', 'densenet201', 'densenet161']
