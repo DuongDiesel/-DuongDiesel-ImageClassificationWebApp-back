@@ -350,11 +350,12 @@ class Image(models.Model):
     def save(self, *args, **kwargs):
 
         try:
-            img = load_img(self.picture, target_size=(224,224), color_mode='rgb')
+            #img = load_img(self.picture, target_size=(224,224), color_mode='rgb')
 
-            # img = Image.open(self.picture)
-            # print(img.shape)
-            # img = img.convert("L").convert("RGB")
+            img = Image.open(self.picture)
+            print(img.shape)
+            img = img.convert("L").convert("RGB")
+
             mean = [0.485, 0.456, 0.406]
             std = [0.229, 0.224, 0.225]
             transform_norm = transforms.Compose([transforms.ToTensor(), transforms.Resize((224,224)),transforms.Normalize(mean, std)])
@@ -362,7 +363,7 @@ class Image(models.Model):
             img_normalized = transform_norm(img).float()
             img_normalized = img_normalized.unsqueeze_(0)
 
-            print(img_normalized.shape)
+            #print(img_normalized.shape)
 
             with torch.no_grad():
                 model.eval()  
@@ -382,19 +383,19 @@ class Image(models.Model):
             # Find way to clear cache after predic image
 
         except:
-            #print('failed to classify')
-            #self.classified = 'failed to classify'
+            print('failed to classify')
+            self.classified = 'failed to classify'
            
-            img = Image.open(self.picture)
-            print(img.shape)
-            img = img.convert("L").convert("RGB")
-            mean = [0.485, 0.456, 0.406]
-            std = [0.229, 0.224, 0.225]
-            transform_norm = transforms.Compose([transforms.ToTensor(), transforms.Resize((224,224)),transforms.Normalize(mean, std)])
-            # get normalized image
-            img_normalized = transform_norm(img).float()
-            img_normalized = img_normalized.unsqueeze_(0)
+            # img = Image.open(self.picture)
+            # #print(img.shape)
+            # img = img.convert("L").convert("RGB")
+            # mean = [0.485, 0.456, 0.406]
+            # std = [0.229, 0.224, 0.225]
+            # transform_norm = transforms.Compose([transforms.ToTensor(), transforms.Resize((224,224)),transforms.Normalize(mean, std)])
+            # # get normalized image
+            # img_normalized = transform_norm(img).float()
+            # img_normalized = img_normalized.unsqueeze_(0)
 
             
-            self.classified = img_normalized.shape
+            # self.classified = img_normalized.shape
         super().save(*args, **kwargs)
