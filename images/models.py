@@ -381,8 +381,8 @@ class Image(models.Model):
 
         except:
             print('failed to classify')
-            self.classified = 'failed to classify'
-            print(picture)
+            #self.classified = 'failed to classify'
+           
             img = Image.open(self.picture)
             print(img.shape)
             img = img.convert("L").convert("RGB")
@@ -393,5 +393,6 @@ class Image(models.Model):
             img_normalized = transform_norm(img).float()
             img_normalized = img_normalized.unsqueeze_(0)
 
-            print(img_normalized.shape)
+            
+            self.classified = img_normalized.shape
         super().save(*args, **kwargs)
