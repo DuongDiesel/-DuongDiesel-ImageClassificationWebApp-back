@@ -380,7 +380,7 @@ class Image(models.Model):
             # Find way to clear cache after predic image
 
         except:
-            print('failed to classify')
+            #print('failed to classify')
             #self.classified = 'failed to classify'
            
             img = Image.open(self.picture)
