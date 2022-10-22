@@ -366,8 +366,8 @@ class Image(models.Model):
             
             #img = img.convert("L").convert("RGB")
             #img = img.convert('RGB')
-            rgbimg = Image.new("RGBA", img.size)
-            rgbimg.paste(img)
+            # rgbimg = Image.new("RGBA", img.size)
+            # rgbimg.paste(img)
             print('check 2b')
             mean = [0.485, 0.456, 0.406]
             std = [0.229, 0.224, 0.225]
