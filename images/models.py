@@ -354,8 +354,10 @@ class Image(models.Model):
             #img = load_img(self.picture, target_size=(224,224), color_mode='rgb')
             print('check 1')
             print(self.picture)
+            img = PIL.Image.open(self.picture)
             try:
-                img = PIL.Image.open(self.picture)
+                rgbimg = Image.new("RGBA", img.size)
+                rgbimg.paste(img)
                 
             except BaseException as err:
                 print(f"Unexpected {err=}, {type(err)=}")
