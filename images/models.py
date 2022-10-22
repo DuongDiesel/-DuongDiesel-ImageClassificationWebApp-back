@@ -366,11 +366,25 @@ class Image(models.Model):
             print('check 2b')
             mean = [0.485, 0.456, 0.406]
             std = [0.229, 0.224, 0.225]
-            transform_norm = transforms.Compose([transforms.ToTensor(), transforms.Resize((224,224)),transforms.Normalize(mean, std)])
-            # get normalized image
-            img_normalized = transform_norm(img).float()
-            img_normalized = img_normalized.unsqueeze_(0)
+            try:
+                transform_norm = transforms.Compose([transforms.ToTensor(), transforms.Resize((224,224)),transforms.Normalize(mean, std)])
 
+                
+            except BaseException as err:
+                print(f"Unexpected {err=}, {type(err)=}")
+                raise
+            print('check 2b-1')
+            # get normalized image
+
+
+            try:
+                img_normalized = transform_norm(img).float()
+                img_normalized = img_normalized.unsqueeze_(0)
+                
+            except BaseException as err:
+                print(f"Unexpected {err=}, {type(err)=}")
+                raise
+            print('check 2b-2')
             #print(img_normalized.shape)
             print('check 2c')
             with torch.no_grad():
