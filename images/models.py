@@ -356,13 +356,14 @@ class Image(models.Model):
             print(self.picture)
             try:
                 img = PIL.Image.open(self.picture)
+                
             except BaseException as err:
                 print(f"Unexpected {err=}, {type(err)=}")
                 raise
-            print('check 2')
-            print(img.shape)
+            print('check 2a')
+            
             img = img.convert("L").convert("RGB")
-
+            print('check 2b')
             mean = [0.485, 0.456, 0.406]
             std = [0.229, 0.224, 0.225]
             transform_norm = transforms.Compose([transforms.ToTensor(), transforms.Resize((224,224)),transforms.Normalize(mean, std)])
@@ -371,7 +372,7 @@ class Image(models.Model):
             img_normalized = img_normalized.unsqueeze_(0)
 
             #print(img_normalized.shape)
-            print('check 2')
+            print('check 2c')
             with torch.no_grad():
                 print('check 3')
                 model.eval()  
