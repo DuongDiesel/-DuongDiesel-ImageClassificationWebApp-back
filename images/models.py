@@ -355,8 +355,9 @@ class Image(models.Model):
             print(self.picture)
             try:
                 img = Image.open(str(self.picture))
-            except:
-                print('end check 1')
+            except BaseException as err:
+                print(f"Unexpected {err=}, {type(err)=}")
+                raise
             print('check 2')
             print(img.shape)
             img = img.convert("L").convert("RGB")
