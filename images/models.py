@@ -355,7 +355,7 @@ class Image(models.Model):
             print('check 1')
             print(self.picture)
             try:
-                img = PIL.Image.open(str(self.picture))
+                img = PIL.Image.open(self.picture)
             except BaseException as err:
                 print(f"Unexpected {err=}, {type(err)=}")
                 raise
