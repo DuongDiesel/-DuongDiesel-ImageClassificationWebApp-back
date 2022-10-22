@@ -362,7 +362,10 @@ class Image(models.Model):
                 raise
             print('check 2a')
             
-            img = img.convert("L").convert("RGB")
+            #img = img.convert("L").convert("RGB")
+            #img = img.convert('RGB')
+            rgbimg = Image.new("RGBA", img.size)
+            rgbimg.paste(img)
             print('check 2b')
             mean = [0.485, 0.456, 0.406]
             std = [0.229, 0.224, 0.225]
@@ -376,7 +379,7 @@ class Image(models.Model):
             print('check 2b-1')
             # get normalized image
             try:
-                img_normalized = transform_norm(img).float()
+                img_normalized = transform_norm(rgbimg).float()
                 #img_normalized = img_normalized.unsqueeze_(0)
                 
             except BaseException as err:
