@@ -375,10 +375,16 @@ class Image(models.Model):
                 raise
             print('check 2b-1')
             # get normalized image
-
-
             try:
                 img_normalized = transform_norm(img).float()
+                #img_normalized = img_normalized.unsqueeze_(0)
+                
+            except BaseException as err:
+                print(f"Unexpected {err=}, {type(err)=}")
+                raise
+
+            try:
+                #img_normalized = transform_norm(img).float()
                 img_normalized = img_normalized.unsqueeze_(0)
                 
             except BaseException as err:
