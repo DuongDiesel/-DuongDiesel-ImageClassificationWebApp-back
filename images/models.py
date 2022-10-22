@@ -5,7 +5,8 @@ import os
 import json
 from torchvision import transforms
 import numpy as np
-from PIL import Image
+#from PIL import Image
+import PIL.Image
 import torch 
 import re
 import torch.nn as nn
@@ -354,7 +355,7 @@ class Image(models.Model):
             print('check 1')
             print(self.picture)
             try:
-                img = Image.open(str(self.picture))
+                img = PIL.Image.open(str(self.picture))
             except BaseException as err:
                 print(f"Unexpected {err=}, {type(err)=}")
                 raise
