@@ -373,21 +373,14 @@ class Image(models.Model):
             std = [0.229, 0.224, 0.225]
             try:
                 transform_norm = transforms.Compose([transforms.ToTensor(), transforms.Resize((224,224)),transforms.Normalize(mean, std)])
-
+                img_normalized = transform_norm(rgbimg).float()
                 
             except BaseException as err:
                 print(f"Unexpected {err=}, {type(err)=}")
                 raise
             print('check 2b-1')
             # get normalized image
-            try:
-                
-                img_normalized = transform_norm(rgbimg).float()
-                #img_normalized = img_normalized.unsqueeze_(0)
-                
-            except BaseException as err:
-                print(f"Unexpected err1 {err=}, {type(err)=}")
-                raise
+
 
             try:
                 #img_normalized = transform_norm(img).float()
