@@ -407,7 +407,7 @@ class Image(models.Model):
                 print(result)
 
                 self.classified = result[0]
-                #print(self.classified)
+                print(self.classified)
 
         except:
             print('failed to classify')
