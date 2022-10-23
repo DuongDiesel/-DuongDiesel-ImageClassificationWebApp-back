@@ -368,8 +368,8 @@ class Image(models.Model):
                 model.eval()  
                 output = model(img_normalized)
                 output = output.tolist()
-                print(output)
-                self.classified = output
+                self.classified = output[0]
+                print(self.classified)
 
         except:
             print('failed to classify')
