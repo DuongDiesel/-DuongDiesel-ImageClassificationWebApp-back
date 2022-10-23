@@ -356,7 +356,7 @@ class Image(models.Model):
             print(self.picture)
             img = PIL.Image.open(self.picture)
             try:
-                rgbimg = PIL.Image.new("RGBA", img.size)
+                rgbimg = PIL.Image.new("RGB", img.size)
                 rgbimg.paste(img)
                 
             except BaseException as err:
