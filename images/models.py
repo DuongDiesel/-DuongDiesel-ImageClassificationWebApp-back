@@ -372,7 +372,7 @@ class Image(models.Model):
             mean = [0.485, 0.456, 0.406]
             std = [0.229, 0.224, 0.225]
             try:
-                transform_norm = transforms.Compose([transforms.ToTensor(), transforms.Resize((224,224)),transforms.Normalize(mean, std)])
+                transform_norm = transforms.Compose([transforms.Resize((224,224)),transforms.ToTensor(),transforms.Normalize(mean, std)])
                 img_normalized = transform_norm(rgbimg).float()
                 
             except BaseException as err:
