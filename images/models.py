@@ -371,7 +371,7 @@ class Image(models.Model):
                 #output = json.dumps(output)
                 #self.classified = str(output[0])
                 #self.classified = output
-                print(output[0])
+                print('A = '+ str(output[0][0]) + 'B = ' str(output[0][1]) )
 
                 self.classified = "test"
                 #print(self.classified)
