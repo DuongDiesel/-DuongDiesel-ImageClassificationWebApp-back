@@ -367,9 +367,9 @@ class Image(models.Model):
 
                 model.eval()  
                 output = model(img_normalized)
-                #output = output.tolist()
+                output = output.tolist()
                 #self.classified = str(output[0])
-                self.classified = str(output)
+                self.classified = str(output[0])
                 print(self.classified)
 
         except:
