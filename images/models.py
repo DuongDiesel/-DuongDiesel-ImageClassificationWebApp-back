@@ -371,9 +371,10 @@ class Image(models.Model):
                 #output = json.dumps(output)
                 #self.classified = str(output[0])
                 #self.classified = output
+                print(output[0])
 
                 self.classified = "test"
-                print(self.classified)
+                #print(self.classified)
 
         except:
             print('failed to classify')
