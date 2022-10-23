@@ -406,7 +406,7 @@ class Image(models.Model):
 
                 print(result)
 
-                self.classified = result
+                self.classified = result[0]
                 #print(self.classified)
 
         except:
