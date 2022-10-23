@@ -370,7 +370,9 @@ class Image(models.Model):
                 #output = output.tolist()
                 #output = json.dumps(output)
                 #self.classified = str(output[0])
-                self.classified = output
+                #self.classified = output
+
+                self.classified = "test"
                 print(self.classified)
 
         except:
