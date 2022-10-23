@@ -404,6 +404,8 @@ class Image(models.Model):
                       ' Hernia = '+ str(round(output[0][13].item()*100,2))+ '%' + \
                       ' No Finding = ' + str(round(output[0][14].item()*100,2))+ '%'
 
+                print(result)
+
                 self.classified = result
                 #print(self.classified)
 
