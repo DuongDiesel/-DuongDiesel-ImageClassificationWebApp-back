@@ -382,10 +382,10 @@ class Image(models.Model):
                       'Consolidation = '+ str(round(output[0][8].item()*100,2)) + \
                       'Edema = '+ str(round(output[0][9].item()*100,2)) + \
                       'Emphysema = '+ str(round(output[0][10].item()*100,2)) + \
-                      'Fibrosis = '+ str(round(output[0][12].item()*100,2)) + \
-                      'Pleural_Thickening = '+ str(round(output[0][13].item()*100,2)) + \
-                      'Hernia = '+ str(round(output[0][14].item()*100,2)) + \
-                      'No Finding = ' + str(round(output[0][15].item()*100,2)) )
+                      'Fibrosis = '+ str(round(output[0][11].item()*100,2)) + \
+                      'Pleural_Thickening = '+ str(round(output[0][12].item()*100,2)) + \
+                      'Hernia = '+ str(round(output[0][13].item()*100,2)) + \
+                      'No Finding = ' + str(round(output[0][14].item()*100,2)) )
 
                 self.classified = "test"
                 #print(self.classified)
