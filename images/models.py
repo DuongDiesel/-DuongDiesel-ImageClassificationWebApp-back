@@ -406,7 +406,25 @@ class Image(models.Model):
 
                 print(result)
 
-                self.classified = result[0:400]
+                dic_result = {' Atelectasis = ': str(round(output[0][0].item()*100,2)), \
+                      ' Cardiomegaly = ': str(round(output[0][1].item()*100,2)), \
+                      ' Effusion = ': str(round(output[0][2].item()*100,2)), \
+                      ' Infiltration = ': str(round(output[0][3].item()*100,2)), \
+                      ' Mass = ': str(round(output[0][4].item()*100,2)), \
+                      ' Nodule = ': str(round(output[0][5].item()*100,2)), \
+                      ' Pneumonia = ': str(round(output[0][6].item()*100,2)), \
+                      ' Pneumothorax = ': str(round(output[0][7].item()*100,2)), \
+                      ' Consolidation = ': str(round(output[0][8].item()*100,2)), \
+                      ' Edema = ': str(round(output[0][9].item()*100,2)), \
+                      ' Emphysema = ': str(round(output[0][10].item()*100,2)), \
+                      ' Fibrosis = ': str(round(output[0][11].item()*100,2)), \
+                      ' Pleural_Thickening = ': str(round(output[0][12].item()*100,2)), \
+                      ' Hernia = ': str(round(output[0][13].item()*100,2)), \
+                      ' No Finding = ' : str(round(output[0][14].item()*100,2))}
+
+                output_dic = json.dumps(dic_result)
+                self.classified = output_dic
+                #self.classified = dic_result
                 print(self.classified)
 
         except:
