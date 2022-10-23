@@ -351,80 +351,27 @@ class Image(models.Model):
     def save(self, *args, **kwargs):
 
         try:
-            #img = load_img(self.picture, target_size=(224,224), color_mode='rgb')
-            print('check 1')
-            print(self.picture)
+
             img = PIL.Image.open(self.picture)
-            try:
-                rgbimg = PIL.Image.new("RGB", img.size)
-                rgbimg.paste(img)
-                
-            except BaseException as err:
-                print(f"Unexpected {err=}, {type(err)=}")
-                raise
-            print('check 2a')
-            
-            #img = img.convert("L").convert("RGB")
-            #img = img.convert('RGB')
-            # rgbimg = Image.new("RGBA", img.size)
-            # rgbimg.paste(img)
-            print('check 2b')
+            rgbimg = PIL.Image.new("RGB", img.size)
+            rgbimg.paste(img)
             mean = [0.485, 0.456, 0.406]
             std = [0.229, 0.224, 0.225]
-            try:
-                transform_norm = transforms.Compose([transforms.Resize((224,224)),transforms.ToTensor(),transforms.Normalize(mean, std)])
-                img_normalized = transform_norm(rgbimg).float()
-                
-            except BaseException as err:
-                print(f"Unexpected {err=}, {type(err)=}")
-                raise
-            print('check 2b-1')
             # get normalized image
+            transform_norm = transforms.Compose([transforms.Resize((224,224)),transforms.ToTensor(),transforms.Normalize(mean, std)])
+            img_normalized = transform_norm(rgbimg).float()
 
+            img_normalized = img_normalized.unsqueeze_(0)
 
-            try:
-                #img_normalized = transform_norm(img).float()
-                img_normalized = img_normalized.unsqueeze_(0)
-                
-            except BaseException as err:
-                print(f"Unexpected err2 {err=}, {type(err)=}")
-                raise
-            print('check 2b-2')
-            #print(img_normalized.shape)
-            print('check 2c')
             with torch.no_grad():
-                print('check 3')
+
                 model.eval()  
                 output = model(img_normalized)
                 print(output)
                 self.classified = str(output)
-                print('check 4')
-
-
-            # img_arry = img_to_array(img)
-            # to_pred = np.expand_dims(img_arry, axis=0) #(1, 299, 299, 3)
-            # prep = preprocess_input(to_pred)
-            # model = ResNet50(weights='imagenet')
-            # prediction = model.predict(prep)
-            # decoded = decode_predictions(prediction)[0][0][1]
-            # self.classified = str(decoded)
-            # print('success')
-            # Find way to clear cache after predic image
 
         except:
             print('failed to classify')
             self.classified = 'failed to classify'
-           
-            # img = Image.open(self.picture)
-            # #print(img.shape)
-            # img = img.convert("L").convert("RGB")
-            # mean = [0.485, 0.456, 0.406]
-            # std = [0.229, 0.224, 0.225]
-            # transform_norm = transforms.Compose([transforms.ToTensor(), transforms.Resize((224,224)),transforms.Normalize(mean, std)])
-            # # get normalized image
-            # img_normalized = transform_norm(img).float()
-            # img_normalized = img_normalized.unsqueeze_(0)
 
-            
-            # self.classified = img_normalized.shape
         super().save(*args, **kwargs)
