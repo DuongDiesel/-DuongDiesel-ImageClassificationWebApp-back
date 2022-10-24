@@ -424,7 +424,7 @@ class Image(models.Model):
 
                 output_dic = json.dumps(dic_result)
                 #self.classified = output_dic
-                self.classified = result[0:250]
+                self.classified = result[0:201]
                 #self.classified = dic_result
                 print(self.classified)
 
