@@ -423,7 +423,8 @@ class Image(models.Model):
                       ' No Finding = ' : str(round(output[0][14].item()*100,2))}
 
                 output_dic = json.dumps(dic_result)
-                self.classified = output_dic
+                #self.classified = output_dic
+                self.classified = result[0:200]
                 #self.classified = dic_result
                 print(self.classified)
 
