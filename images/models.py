@@ -423,27 +423,33 @@ class Image(models.Model):
                       '|No Finding= ' : str(round(output[0][14].item()*100,2))}
 
                 dic_result_number = {'1= ': str(round(output[0][0].item()*100,2)), \
-                      '|2= ': str(round(output[0][1].item()*100,2)), \
-                      '|3= ': str(round(output[0][2].item()*100,2)), \
-                      '|4= ': str(round(output[0][3].item()*100,2)), \
-                      '|5= ': str(round(output[0][4].item()*100,2)), \
-                      '|6= ': str(round(output[0][5].item()*100,2)), \
-                      '|7= ': str(round(output[0][6].item()*100,2)), \
-                      '|8= ': str(round(output[0][7].item()*100,2)), \
-                      '|9= ': str(round(output[0][8].item()*100,2)), \
-                      '|10= ': str(round(output[0][9].item()*100,2)), \
-                      '|11= ': str(round(output[0][10].item()*100,2)), \
-                      '|12= ': str(round(output[0][11].item()*100,2)), \
-                      '|13= ': str(round(output[0][12].item()*100,2)), \
-                      '|14= ': str(round(output[0][13].item()*100,2)), \
-                      '|15= ' : str(round(output[0][14].item()*100,2))}
+                      '2= ': str(round(output[0][1].item()*100,2)), \
+                      '3= ': str(round(output[0][2].item()*100,2)), \
+                      '4= ': str(round(output[0][3].item()*100,2)), \
+                      '5= ': str(round(output[0][4].item()*100,2)), \
+                      '6= ': str(round(output[0][5].item()*100,2)), \
+                      '7= ': str(round(output[0][6].item()*100,2)), \
+                      '8= ': str(round(output[0][7].item()*100,2)), \
+                      '9= ': str(round(output[0][8].item()*100,2)), \
+                      '10= ': str(round(output[0][9].item()*100,2)), \
+                      '11= ': str(round(output[0][10].item()*100,2)), \
+                      '12= ': str(round(output[0][11].item()*100,2)), \
+                      '13= ': str(round(output[0][12].item()*100,2)), \
+                      '14= ': str(round(output[0][13].item()*100,2)), \
+                      '15= ' : str(round(output[0][14].item()*100,2))}
 
+                list_result_number = []
+                for key, value in dic_result_number.items():
+                    list_result_number.append(value)
+
+                print(list_result_number)
                 output_dic = json.dumps(dic_result)
                 output_dic_num = json.dumps(dic_result_number)
                 #self.classified = output_dic
                 #self.classified = result[0:200]
                 #self.classified = dic_result
-                self.classified = output_dic_num
+                #self.classified = output_dic_num
+                self.classified = list_result_number
                 print(self.classified)
 
         except:
