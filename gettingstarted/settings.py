@@ -64,7 +64,8 @@ CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = [
     "https://serene-dusk-18231.herokuapp.com",
-    "https://serene-dusk-18231.herokuapp.com/"
+    "https://serene-dusk-18231.herokuapp.com/",
+    "https://ieee-post-image-frontend-vercel.vercel.app/"
 ]
 
 
